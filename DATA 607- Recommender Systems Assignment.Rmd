@@ -1,0 +1,80 @@
+---
+title: 'DATA 607: Assignment 11 - Recommender Systems'
+author: "Amber Ferger"
+date: "11/9/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Assignment
+Your task is to analyze an existing recommender system that you find interesting.  You should:
+
+1. Perform a Scenario Design analysis as described below.  Consider whether it makes sense for your selected recommender system to perform scenario design twice, once for the organization (e.g. Amazon.com) and once for the organization's customers.
+2. Attempt to reverse engineer what you can about the site, from the site interface and any available information that you can find on the Internet or elsewhere.
+3. Include specific recommendations about how to improve the site's recommendation capabilities going forward. 
+4. Create your report using an R Markdown file, and create a discussion thread with a link to the GitHub repo where your Markdown file notebook resides.  You are not expected to need to write code for this discussion assignment.
+
+
+## Stitch Fix
+The recommender system that I will be using for this assignment is *Stitch Fix*. This website curates clothing items for a user based on their style preferences. An individual takes a "Style Quiz", selects a price range, and the company mails the user a set of clothing. If the individual does not like the clothing that was sent, they can send it back at no cost. This acts as a sort of rating system, whereby the next set of delivered clothes are adjusted according to user preference. 
+
+I chose this particular recommendation system because a coworker was raving about it at work the other day. He has a toddler at home and doesn't have the time to go out and shop for new clothes, so this service was the perfect match for his situation.
+
+
+
+## Scenario Design
+### **Who are your Target Users?**
+The target users for Stitch Fix can be bucketed into a couple categories:
+
+- **Indiduals that don't have the time to shop for themselves.** - By delivering custom-curated clothing to an individual's door, Stitch Fix frees up time for people too busy to devote hours to shopping. This was the primary reason that my coworker tried out the site, and I think this might be the main target group.
+- **Individuals looking for a stylist.** - These individuals probably don't mind shopping, but would prefer that someone pick out their outfits for them. 
+
+
+
+### **What are their key goals?**
+The key goals for the users are to:
+
+- Have a wardrobe that looks and feels good
+- Eliminate the need to spend hours finding the right clothes
+- Purchase clothing that aligns with their budget
+
+
+
+### **How can you help them accomplish those goals?**
+Stitch Fix can help its customers by:
+
+- Providing custom-tailored clothing that aligns with the user's preferences & budget
+- Delivering clothing within a reasonable timeframe
+- Adjusting clothing choices based on a user's feedback
+
+
+
+## Reverse Engineering
+In order to get a better feel for the recommendation system, I took the Style Quiz on Stitch Fix, talked to the coworker that had recently tried the service, and browsed through the website. This is what I found:
+
+- **Style Quiz**: The style quiz acts as the basis of the recommendation. It provides the user with a number of questions about clothing fit (size, shape, etc) and also with a bunch of pictures of different clothing styles. These responses must be recorded in a database and my guess is that they are used in a similarity algorithm (similar to what Amazon does) to match the user with clothes that are similar to the choices they selected.
+
+- **Similar Customers**: I looked at the website in a little more detail and found a page with the following information:
+
+![](pic.PNG)
+
+This highlights the fact that the website is using information from similar customers to curate a set of clothing for the individual. 
+
+- **Clothing Feedback**: After talking with my coworker, I found out that if an individual doesn't like the clothes that are provided, they are able to send it back and provide feedback on the choices. This feedback is incorporated into the user's preferences and the next round of clothing is updated based on this information. This is very similar to how Amazon recommends product to users -- not only does it look at similar items to those that were purchased, but it takes user reviews into account in order to provide better recommendations. 
+
+Altogether, it appears that this recommendation system likely uses one or more of the following: traditional collaborative filtering (looks at all of the items that a user likes and identifies similar items to suggest), clustering (groups users into categories to find similarities in clothing preferences), and search-based models (looks for other similar clothing choices that were highly rated).
+
+
+## Recommendations
+Based on my research of this service, I have a few ideas to increase the effectiveness of the recommendation: 
+
+- **Provide more clothing pictures!** I went through the styling quiz and found that there were very few pictures of clothing options to rate. If the service provided some sort of picture gallery that a user could go through and rate articles of clothing, it might provide a better data set to go off of when developing the recommendation. 
+
+- **Allow for freeform feedback.** After reading a bunch of reviews of the site online, it appears that although there's an option to provide ratings for the clothing items, there isn't really a way to provide specific feedback. If the system allowed for a more thorough review of the product, it would be able to incorporate this into the next month's recommendations. For example, someone giving an item of clothing a 1 star review for style is very different than a 1 star review for pricing. Incorporating this information into the recommendation system would allow for a better matching. 
+
+
+
+
